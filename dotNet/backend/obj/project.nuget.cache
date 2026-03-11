@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "p0tluZ/UE80=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\Exemplo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joaov\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
+    "C:\\Users\\joaov\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
+    "C:\\Users\\joaov\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\joaov\\.nuget\\packages\\npgsql\\10.0.1\\npgsql.10.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
