@@ -1,12 +1,20 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
+
+interface User {
+  name: string;
+  email: string;
+}
 
 const API_URL = 'http://localhost:5000/api/auth/login';
 
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  // Use Genericos para o estado que começa com null
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +29,9 @@ function App() {
     }
   }, []);
 
-  const handleLogin = async (e) => {
+
+  //Tipagem do evento de submit do formulário
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -49,7 +59,7 @@ function App() {
       setUser(data.user);
       setEmail('');
       setPassword('');
-    } catch (err) {
+    } catch (err: any) { // Use "any" para o tipo do erro, já que pode ser um objeto de erro ou uma string
       setError(err.message);
     } finally {
       setLoading(false);
@@ -64,7 +74,7 @@ function App() {
   };
 
   // Styles
-  const styles = {
+  const styles: Record<string, React.CSSProperties> = {
     container: {
       minHeight: '100vh',
       display: 'flex',
@@ -94,7 +104,7 @@ function App() {
     label: {
       display: 'block',
       marginBottom: '8px',
-      color: '#555',
+      color: 'black',
       fontWeight: '500',
     },
     input: {
@@ -141,7 +151,7 @@ function App() {
     userName: {
       fontSize: '24px',
       fontWeight: '600',
-      color: '#333',
+      color: 'black',
       marginBottom: '10px',
     },
     userEmail: {
