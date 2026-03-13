@@ -1,11 +1,23 @@
-import Button from "@/app/components/Button"
-import App from "@/app/components/App"
+"use client";
+
+
+import App from "@/app/components/App";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 export default function TestePage(){
   return (
-  
-    <div className="flex h-screen w-full caret-blue-900">
+<>
+
+        <Header />
+    <div className="flex h-screen w-full">
         <App />
     </div>
+        <Footer />
+
+
+
+</>
   )
+
 } 

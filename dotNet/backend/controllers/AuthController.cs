@@ -1,35 +1,50 @@
+using backend.Models;
+using backend.Services;
+using backend.Utils;
 using Microsoft.AspNetCore.Mvc;
-using repositories; 
-namespace controllers;
+
+namespace backend.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    private readonly UserRepository _repository;
-    private readonly IAuthService _authService;
+    private readonly IUserService _service;
+    private readonly JwtService _jwt;
 
-    public AuthController(UserRepository repository, IAuthService authService)
+    public AuthController(IUserService service, JwtService jwt)
     {
-        _repository = repository;
-        _authService = authService;
+        _service = service;
+        _jwt = jwt;
+    }
+
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(User user)
+    {
+        await _service.Register(user);
+        return Ok();
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    public async Task<IActionResult> Login(User login)
     {
-        var user = await _repository.GetUserByEmail(request.Email);
+        var user = await _service.Login(login.Email, login.Password);
 
-        // Importante: Na vida real, use BCrypt para verificar o hash da senha!
-        if (user == null || user.Password != request.Password)
-            return Unauthorized("E-mail ou senha inválidos.");
+        if (user == null)
+            return Unauthorized();
 
-        var token = _authService.GenerateToken(user);
+        var token = _jwt.GenerateToken(user);
 
-        return Ok(new { 
-            Token = token,
-            User = new { user.Id, user.Name, user.Email } 
+        return Ok(new
+        {
+            token = token,
+            user = new
+            {
+                name = user.Name,
+                email = user.Email
+            }
+
+
         });
     }
-}       
-    
+}

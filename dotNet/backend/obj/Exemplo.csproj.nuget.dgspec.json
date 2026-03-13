@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\Exemplo.csproj": {}
+    "C:\\Users\\joaov\\OneDrive\\Documentos\\2RPNET\\dotNet\\backend\\Exemplo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\Exemplo.csproj": {
+    "C:\\Users\\joaov\\OneDrive\\Documentos\\2RPNET\\dotNet\\backend\\Exemplo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\Exemplo.csproj",
+        "projectUniqueName": "C:\\Users\\joaov\\OneDrive\\Documentos\\2RPNET\\dotNet\\backend\\Exemplo.csproj",
         "projectName": "Exemplo",
-        "projectPath": "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\Exemplo.csproj",
+        "projectPath": "C:\\Users\\joaov\\OneDrive\\Documentos\\2RPNET\\dotNet\\backend\\Exemplo.csproj",
         "packagesPath": "C:\\Users\\joaov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaov\\OneDrive\\Área de Trabalho\\2RPNET\\dotNet\\backend\\obj\\",
+        "outputPath": "C:\\Users\\joaov\\OneDrive\\Documentos\\2RPNET\\dotNet\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\joaov\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -48,13 +48,35 @@
               "target": "Package",
               "version": "[2.1.72, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.3, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
             "Npgsql": {
               "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
               "version": "[10.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.5, )"
             }
           },
           "imports": [

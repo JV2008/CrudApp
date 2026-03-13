@@ -1,32 +1,34 @@
-namespace repositories;
+using backend.Models;
+using backend.Data;
+using Dapper;
 
-public class UserRepository
+namespace backend.Repositories;
+
+public class UserRepository : IUserRepository
 {
-    private readonly string _connectionString = "Host=localhost;Port=5432;Database=postgres-container;Username=usuario;Password=12345678";
+    private readonly DbConnectionFactory _connectionFactory;
+
+    public UserRepository(DbConnectionFactory connectionFactory)
+    {
+        _connectionFactory = connectionFactory;
+    }
+
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        var connection = _connectionFactory.CreateConnection();
+
+       var sql = "SELECT * FROM users WHERE email = @Email";
+
+        return await connection.QueryFirstOrDefaultAsync<User>(sql, new { Email = email });
+    }
 
     public async Task CreateUser(User user)
     {
-        using var connection = new NpgsqlConnection(_connectionString);
-        await connection.ExecuteAsync("INSERT INTO users (name, email, password) VALUES (@Name, @Email, @Password)", user);
-    }
+       using var connection = _connectionFactory.CreateConnection();
 
-    public async Task<User> GetUserByEmail(string email)
-    {
-        using var connection = new NpgsqlConnection(_connectionString);
-        return await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM users WHERE email = @Email", new { Email = email });
-    }
+        var sql = @"INSERT INTO users (name, email, password)
+                    VALUES (@Name, @Email, @Password)";
 
-    public async Task UpdateUser(User user)
-    {
-        using var connection = new NpgsqlConnection(_connectionString);
-        await connection.ExecuteAsync("UPDATE users SET name = @Name, email = @Email, password = @Password WHERE id = @Id", user);
+        await connection.ExecuteAsync(sql, user);
     }
-
-    public async Task DeleteUser(int id)
-    {
-        using var connection = new NpgsqlConnection(_connectionString);
-        await connection.ExecuteAsync("DELETE FROM users WHERE id = @Id", new { Id = id });
-    }
-
 }
-
